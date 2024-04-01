@@ -10,18 +10,16 @@ for i in range(link_cnt):
     if not fnode in graph[snode]: graph[snode].append(fnode)
     if not snode in graph[fnode]: graph[fnode].append(snode)
 
-print(graph)
-
-def bfs(node):
+def bfs(x):
     queue = deque()
-    queue.append(node)
+    queue.append(x)
+    visited[x] = True
     while queue:
         nod = queue.popleft()
         for n in graph[nod]:
             if not visited[n]:
-                queue.append(n)
                 visited[n] = True
-    return visited.count(True)
+                queue.append(n)
+    return visited.count(True) - 1 # 1번 컴퓨터를 제외
 
-visited[1] = True
 print(bfs(1))
