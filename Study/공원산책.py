@@ -1,12 +1,14 @@
 from collections import deque
+
+
 def solution(park, routes):
     answer = []
     sx, sy = 0, 0
     for i in range(len(park)):
-        if 'S' in park[i]:
+        if "S" in park[i]:
             sx = i
-            sy = park[i].index('S')
-            
+            sy = park[i].index("S")
+
     queue = deque(routes)
     while queue:
         direction, move = queue.popleft().split()
@@ -24,7 +26,7 @@ def solution(park, routes):
             if not (0 <= nx < len(park) and 0 <= ny < len(park[0])):
                 isOut = True
                 break
-            if park[nx][ny] == 'X':
+            if park[nx][ny] == "X":
                 isWall = True
                 break
         if not isOut and not isWall:
