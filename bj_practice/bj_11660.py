@@ -21,9 +21,6 @@ for _ in range(m):
     x1, y1, x2, y2 = x1 - 1, y1 - 1, x2 - 1, y2 - 1
     if x1 > 0 and y1 > 0:
         answer = dp[x2][y2] - dp[x1 - 1][y2] - dp[x2][y1 - 1] + dp[x1 - 1][y1 - 1]
-        # print(
-        #     f"answer = {dp[x2][y2]} - {dp[x1 - 1][y2]} - {dp[x2][y2 - 1]} + {dp[x1 - 1][y1 - 1]}"
-        # )
     elif x1 == x2 and y1 == y2 :
         answer = graph[x1][y1]
     elif x1 == 0 and y1 != 0:
@@ -33,7 +30,4 @@ for _ in range(m):
     else:
         answer = dp[x2][y2]
     print(answer)
-# [[1, 3, 6, 10],
-# [3, 8, 15, 24],
-# [6, 15, 27, 42],
-# [10, 24, 42, 64]]
+
