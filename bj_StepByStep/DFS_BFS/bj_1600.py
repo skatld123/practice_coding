@@ -21,10 +21,11 @@ def bfs(x, y):
         use_horse, qx, qy = queue.popleft()
         if qx == w - 1 and qy == h - 1:
             return visited[use_horse][qx][qy] - 1
+        
         for i in range(len(dmx)):
             nx, ny = qx + dmx[i], qy + dmy[i]
             if 0 <= nx < h and 0 <= ny < w:
-                if graph[nx][ny] != 1 and visited[use_horse][nx][ny] == -1:
+                if not graph[nx][ny] and not visited[use_horse][nx][ny]:
                     visited[use_horse][nx][ny] = visited[use_horse][qx][qy] + 1
                     queue.append([use_horse, nx, ny])
 
@@ -32,10 +33,9 @@ def bfs(x, y):
             for i in range(len(dhx)):
                 nx, ny = qx + dhx[i], qy + dhy[i]
                 if 0 <= nx < h and 0 <= ny < w:
-                    if graph[nx][ny] != 1 and visited[use_horse][nx][ny] == -1:
+                    if not graph[nx][ny] and not visited[use_horse + 1][nx][ny]:
                         visited[use_horse + 1][nx][ny] = visited[use_horse][qx][qy] + 1
                         queue.append([use_horse + 1, nx, ny])
-
     return -1
 
 print(bfs(0, 0))

@@ -1,6 +1,5 @@
 from collections import deque
 
-
 def solution(n, s, a, b, fares):
     answer = 0
     # n 지점개수, s 출발지점, a 도착지점, b 도착지점
