@@ -43,26 +43,20 @@ while k > 0:
                 trees = tree_grp[i][j]
                 trees.sort()
                 live_trees = []
+                dead_tree = 0
                 for tidx in range(len(trees)):
                     tage = trees[tidx]
-                    # 만약 남은 양분이 충분하다면,
                     if graph[i][j] - tage >= 0:
                         graph[i][j] = graph[i][j] - tage
                         tree_grp[i][j][tidx] += 1 # 나이증가
-                        live_trees.append(tree_grp[i][j][tidx])
+                        live_trees.append(tree_grp[i][j][tidx]) # 살아있는 놈들만 임시저장
                         if tree_grp[i][j][tidx] % 5 == 0:
                             fall_tree.append([i, j])
-                    else: # 죽은 나무 기록해놔야함
-                        # dead_tree.append([i, j, tage])
-                        graph[x][y] += tage // 2
+                    else: # 죽은 나무 
+                        dead_tree += tage // 2
                         cnt -= 1
                 tree_grp[i][j] = live_trees
-    # summer
-    # for dt in dead_tree:
-    #     x, y, dage = dt
-    #     tree_grp[x][y].pop()
-    #     cnt -= 1
-    #     graph[x][y] += (dage // 2)
+                graph[i][j] += dead_tree
 
     # fall
     for ft in fall_tree:
@@ -77,6 +71,5 @@ while k > 0:
     for i in range(n):
         for j in range(n):
             graph[i][j] += robot[i][j]
-
     k -= 1
 print(cnt)
